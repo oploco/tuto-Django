@@ -1,0 +1,56 @@
+<html>
+<style>
+ul {
+  padding: 2;
+  width: 100%;
+}
+
+li {
+  padding: 4;
+  display: block;
+}
+
+a {
+  outline: none;
+  text-decoration: none;
+  display: inline-block;
+  width: 10.5%;
+  margin-right: 0.25%;
+  text-align: center;
+  line-height: 1;
+  color: black;
+}
+
+li:last-child a {
+  margin-right: 0;
+}
+
+a:link,
+a:visited,
+a:focus {
+  background: lightgreen;
+}
+
+a:hover {
+  background: orange;
+}
+
+a:active {
+  background: red;
+  color: white;
+}
+
+</style>
+
+<h1>{{ question.question_text }}</h1>
+
+<ul>
+{% for choice in question.choice_set.all %}
+    <li>{{ choice.choice_text }} -- {{ choice.votes }} vote{{ choice.votes|pluralize }}</li>
+{% endfor %}
+</ul>
+
+<a href="{% url 'polls:detail' question.id %}">Vote again?</a>
+<a href="{% url 'polls:index' %}">Another Question? </a>
+
+</html>
